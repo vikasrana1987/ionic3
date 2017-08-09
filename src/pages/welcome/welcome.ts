@@ -1,28 +1,35 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
-import { SignupPage } from '../signup/signup';
 
-/**
- * The Welcome Page is a splash page that quickly describes the app,
- * and then directs the user to create an account or log in.
- * If you'd like to immediately put the user onto a login/signup page,
- * we recommend not using the Welcome page.
-*/
+import { Topics } from '../../providers/providers';
+
+import { Topic } from '../../models/topic';
+
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+  currentTopics: Topic[];
 
-  constructor(public navCtrl: NavController) { }
-
-  login() {
-    this.navCtrl.push(LoginPage);
+  constructor(public navCtrl: NavController, public topics: Topics, public modalCtrl: ModalController) {
+    this.currentTopics = this.topics.query();
   }
 
-  signup() {
-    this.navCtrl.push(SignupPage);
+  /**
+   * The view loaded, let's query our items for the list
+   */
+  ionViewDidLoad() {
+  }
+
+  
+  /**
+   * Navigate to the detail page for this item.
+   */
+  openTopic(topic: Topic) {
+    //this.navCtrl.push(ItemDetailPage, {
+     // item: item
+    //});
   }
 }
