@@ -6,7 +6,7 @@
             {{ 'WELCOME_INTRO' | translate }}
         </div>
     </div>
-    <ion-list>
+    <ion-list margin-top>
         <ion-item no-lines *ngFor="let topic of currentTopics" (click)="openTopic(topic)" [ngClass]="topic.class">
             <ion-avatar item-start>
                 <img [src]="topic.profilePic" />

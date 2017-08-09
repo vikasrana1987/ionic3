@@ -30,6 +30,11 @@ export class Topics {
         "name": "Tips",
         "profilePic": "assets/img/speakers/duck.jpg",
         "class": "tips"
+      },
+      {
+        "name": "Quiz",
+        "profilePic": "assets/img/speakers/duck.jpg",
+        "class": "quiz"
       }
     ];
 
