@@ -6,6 +6,8 @@ import { Topics } from '../../providers/providers';
 
 import { Topic } from '../../models/topic';
 
+import { SubListMasterPage } from './../sub-list-master/sub-list-master';
+
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html'
@@ -28,8 +30,8 @@ export class WelcomePage {
    * Navigate to the detail page for this item.
    */
   openTopic(topic: Topic) {
-    //this.navCtrl.push(ItemDetailPage, {
-     // item: item
-    //});
+    this.navCtrl.push(SubListMasterPage, {
+      topic: topic
+    });
   }
 }
