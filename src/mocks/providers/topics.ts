@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Topic } from '../../models/topic';
 
@@ -14,7 +13,7 @@ export class Topics {
   };
 
 
-  constructor(public http: Http) {
+  constructor() {
     let topics = [
       {
         "name": "Interview",
@@ -59,5 +58,13 @@ export class Topics {
       }
       return null;
     });
+  }
+
+  add(topic: Topic) {
+    this.topics.push(topic);
+  }
+
+  delete(topic: Topic) {
+    this.topics.splice(this.topics.indexOf(topic), 1);
   }
 }

@@ -1,0 +1,19 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'LIST_TOPICS_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="item-profile" text-center> </div>
+    <ion-list>
+        <ion-item no-lines *ngFor="let topic of currentTopics" (click)="openTopic(topic)" [ngClass]="topic.class">
+            <ion-avatar item-start>
+                <img [src]="topic.profilePic" />
+            </ion-avatar>
+            <h2>{{topic.name}}</h2>
+        </ion-item>
+    </ion-list>
+</ion-content>

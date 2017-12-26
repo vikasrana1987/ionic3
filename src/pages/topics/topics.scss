@@ -1,0 +1,21 @@
+page-topics {
+    .item-profile {
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        height: 200px;
+        background-image: url("./../assets/img/interview.jpg")
+    }
+    .interview {
+        background-color: red;
+    }
+    .aptitude {
+        background-color: gray;
+    }
+    .tips {
+        background-color: blue;
+    }
+    .quiz {
+        background-color: #ccc;
+    }
+}

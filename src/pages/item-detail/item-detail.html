@@ -1,18 +1,48 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ item.name }}</ion-title>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-title>{{ item.name }}</ion-title>
+    </ion-navbar>
 </ion-header>
 
-
-<ion-content>
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
-  </div>
-
-  <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <p>{{item.about}}</p>
-  </div>
+<ion-content class="content" no-bounce>
+    <ion-fab top right edge>
+        <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
+        <ion-fab-list>
+            <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+            <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+    <ion-slides (ionSlideWillChange)="onSlideChangeStart($event)">
+        <ion-slide *ngFor="let question of questions">
+            <h2 class="slide-title" [innerHTML]="question.title"></h2>
+            <p [innerHTML]="question.description"></p>
+        </ion-slide>
+    </ion-slides>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button round float-left icon-start [hidden]="slides.isBeginning()" (click)="slidePrev()">
+                <ion-icon name='arrow-back'></ion-icon>
+                Back
+              </button>
+
+        <button ion-button round float-right icon-end [hidden]="slides.isEnd()" (click)="slideNext()">
+                Next
+                <ion-icon name='arrow-forward'></ion-icon>
+              </button>
+        <!--<ion-segment>
+                <ion-segment-button [hidden]="slides.isBeginning()" value="prev" (click)="slidePrev()">
+                    <ion-icon name="arrow-dropleft-circle"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="share">
+                    Share
+                </ion-segment-button>
+                <ion-segment-button [hidden]="slides.isEnd()" value="next" (click)="slideNext()">
+                    <ion-icon name="arrow-dropright-circle"></ion-icon>
+
+                </ion-segment-button>
+            </ion-segment>-->
+    </ion-toolbar>
+</ion-footer>

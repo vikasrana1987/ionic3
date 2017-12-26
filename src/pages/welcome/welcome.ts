@@ -1,37 +1,26 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
-
-import { Topics } from '../../providers/providers';
-
-import { Topic } from '../../models/topic';
-
-import { SubListMasterPage } from './../sub-list-master/sub-list-master';
-
+/**
+ * The Welcome Page is a splash page that quickly describes the app,
+ * and then directs the user to create an account or log in.
+ * If you'd like to immediately put the user onto a login/signup page,
+ * we recommend not using the Welcome page.
+*/
+@IonicPage()
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
-  currentTopics: Topic[];
 
-  constructor(public navCtrl: NavController, public topics: Topics, public modalCtrl: ModalController) {
-    this.currentTopics = this.topics.query();
+  constructor(public navCtrl: NavController) { }
+
+  login() {
+    this.navCtrl.push('LoginPage');
   }
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
-  ionViewDidLoad() {
-  }
-
-  
-  /**
-   * Navigate to the detail page for this item.
-   */
-  openTopic(topic: Topic) {
-    this.navCtrl.push(SubListMasterPage, {
-      topic: topic
-    });
+  signup() {
+    this.navCtrl.push('SignupPage');
   }
 }
