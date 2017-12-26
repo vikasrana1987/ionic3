@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Quiz</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="content" no-bounce>
+
+    <!--<ion-slides (ionSlideWillChange)="onSlideChangeStart($event)">
+        <ion-slide *ngFor="let question of questions">
+            <h2 class="slide-title" [innerHTML]="question.title"></h2>
+            <p [innerHTML]="question.description"></p>
+        </ion-slide>
+    </ion-slides>-->
+    <!-- Quiz Results -->
+    <div id="quiz-result" class="card">
+        You Scored <span id="quiz-percent"></span>% - <span id="quiz-score"></span>/<span id="quiz-max-score"></span><br/>
+    </div>
+
+    <!-- Quiz Container -->
+    <ion-slides (ionSlideWillChange)="onSlideChangeStart($event)">
+        <ion-slide class="card quizlib-question">
+            <div class="quizlib-question-title">1. What is the answer to life, the universe and everything?</div>
+            <div class="quizlib-question-answers">
+                <ion-list>
+                    <ion-item>
+                        <ion-input type="text" value="" name="q1"></ion-input>
+                    </ion-item>
+                </ion-list>
+
+            </div>
+        </ion-slide>
+        <ion-slide class="card quizlib-question">
+            <div class="quizlib-question-title">2. Your enemy..</div>
+            <div class="quizlib-question-answers">
+                <ion-list radio-group>
+                    <ion-item>
+                        <ion-label>Go</ion-label>
+                        <ion-radio name="q2" value="a"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Rust</ion-label>
+                        <ion-radio name="q2" value="b"></ion-radio>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-slide>
+        <ion-slide class="card quizlib-question">
+            <div class="quizlib-question-title">3. Which factors will contribute to the end of humanity as we know it?</div>
+            <div class="quizlib-question-answers">
+                <ion-item>
+                    <ion-label>Global warming</ion-label>
+                    <ion-checkbox color="dark" name="q3" value="a"></ion-checkbox>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Arya Stark</ion-label>
+                    <ion-checkbox name="q3" value="b"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Arya Stark</ion-label>
+                    <ion-checkbox name="q3" value="c"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Arya Stark</ion-label>
+                    <ion-checkbox name="q3" value="d"></ion-checkbox>
+                </ion-item>
+
+            </div>
+        </ion-slide>
+
+    </ion-slides>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <!-- Answer Button -->
+        <button ion-button round float-right (click)="showResults()">
+                Submit
+              </button>
+        <!--  <button ion-button round float-left icon-start [hidden]="slides.isBeginning()" (click)="slidePrev()">
+                <ion-icon name='arrow-back'></ion-icon>
+                Back
+              </button>
+
+        <button ion-button round float-right icon-end [hidden]="slides.isEnd()" (click)="slideNext()">
+                Next
+                <ion-icon name='arrow-forward'></ion-icon>
+              </button>-->
+        <!--<ion-segment>
+                <ion-segment-button [hidden]="slides.isBeginning()" value="prev" (click)="slidePrev()">
+                    <ion-icon name="arrow-dropleft-circle"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="share">
+                    Share
+                </ion-segment-button>
+                <ion-segment-button [hidden]="slides.isEnd()" value="next" (click)="slideNext()">
+                    <ion-icon name="arrow-dropright-circle"></ion-icon>
+
+                </ion-segment-button>
+            </ion-segment>-->
+    </ion-toolbar>
+</ion-footer>
