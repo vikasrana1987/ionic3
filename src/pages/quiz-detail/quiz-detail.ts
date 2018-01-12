@@ -16,25 +16,45 @@ export class QuizDetailPage {
   @ViewChild(Slides) slides: Slides;
   quiz: any;
   questions: any;
+  loadProgress: any;
+  backgroundColor: any = "#f44336";
+  score: any;
+  maxScore: any;
   constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
-   
+    this.loadProgress = 0;
     this.questions = [
       {
-        title: "values.TUTORIAL_SLIDE1_TITLE",
-        description: "values.TUTORIAL_SLIDE1_DESCRIPTION",
-        image: 'assets/img/ica-slidebox-img-1.png',
+        title: "What is the answer to life, the universe and everything?",
+        type: "textbox",
+        answer:"42",
+        uuid: '111',
       },
       {
-        title: "values.TUTORIAL_SLIDE2_TITLE",
-        description: "values.TUTORIAL_SLIDE2_DESCRIPTION",
-        image: 'assets/img/ica-slidebox-img-2.png',
+        title: "Your enemy..",
+        type: "radio",
+        options:[
+          { name: "A", value: "a" },
+          { name: "B", value: "b" }
+        ],
+        answer:"b",
+        uuid: '222'
       },
       {
-        title: "values.TUTORIAL_SLIDE3_TITLE",
-        description: "values.TUTORIAL_SLIDE3_DESCRIPTION",
-        image: 'assets/img/ica-slidebox-img-3.png',
+        title: "Which factors will contribute to the end of humanity as we know it?",
+        type: "checkbox",
+        options:[
+          { name: "A", value: "a" },
+          { name: "B", value: "b" },
+          { name: "C", value: "c" },
+          { name: "D", value: "d" },
+        ],
+        answer: ['b', 'c', 'd'],
+        uuid: '333'
       }
     ];
+    console.log(this.questions)
+    this.score = 0;
+    this.maxScore = this.questions.length;
   }
 
   ionViewDidLoad() {
@@ -59,17 +79,14 @@ export class QuizDetailPage {
     // Check answers and continue if all questions have been answered
     if (this.quiz.checkAnswers()) {
       var quizScorePercent = this.quiz.result.scorePercentFormatted; // The unformatted percentage is a decimal in range 0 - 1
-      var quizResultElement = document.getElementById('quiz-result');
-      quizResultElement.style.display = 'block';
-      document.getElementById('quiz-score').innerHTML = this.quiz.result.score.toString();
-      document.getElementById('quiz-max-score').innerHTML = this.quiz.result.totalQuestions.toString();
-      document.getElementById('quiz-percent').innerHTML = quizScorePercent.toString();
-
+      this.score = this.quiz.result.score.toString();
+      this.maxScore = this.quiz.result.totalQuestions.toString(); 
+      this.loadProgress = quizScorePercent.toString(); 
       // Change background colour of results div according to score percent
-      if (quizScorePercent >= 75) quizResultElement.style.backgroundColor = '#4caf50';
-      else if (quizScorePercent >= 50) quizResultElement.style.backgroundColor = '#ffc107';
-      else if (quizScorePercent >= 25) quizResultElement.style.backgroundColor = '#ff9800';
-      else if (quizScorePercent >= 0) quizResultElement.style.backgroundColor = '#f44336';
+      if (quizScorePercent >= 75) this.backgroundColor = '#4caf50';
+      else if (quizScorePercent >= 50) this.backgroundColor = '#ffc107';
+      else if (quizScorePercent >= 25) this.backgroundColor = '#ff9800';
+      else if (quizScorePercent >= 0) this.backgroundColor = '#f44336';
 
       // Highlight questions according to whether they were correctly answered. The callback allows us to highlight/show the correct answer
       this.quiz.highlightResults(this.handleAnswers.bind(this));
@@ -84,21 +101,21 @@ export class QuizDetailPage {
       //let quiz = this.quiz;
        // Get answers
 		//var answers = question.getElementsByClassName(question.Classes.QUESTION_ANSWERS)[0];
-    var ion_item = document.getElementsByClassName(quiz.Classes.QUESTION_ANSWERS);
+    var ion_item = document.getElementsByClassName(question.className);
 
 		for (var k=0; k < ion_item.length; k++) {
-      let items = ion_item[k].getElementsByTagName('ion-item');
+      /*let items = ion_item[k].getElementsByTagName('ion-item');
       for (var l=0; l < items.length; l++) {
         if(this.hasClass(items[l],'item-radio') || this.hasClass(items[l],'item-checkbox'))
         {
           let elem = (this.hasClass(items[l],'item-radio')) ? items[l].getElementsByTagName('ion-radio') : items[l].getElementsByTagName('ion-checkbox');
           let value = elem[0].getAttribute('value');
-          
           if (this.quiz.answers[no].indexOf(value) > -1) {
+            console.log(items[l])
             items[l].classList.add(this.quiz.Classes.CORRECT);
           }
         }
-      }
+      }*/
       /*if(this.hasClass(item,'item-input'))
       {
         var correctAnswer = document.createElement('span');

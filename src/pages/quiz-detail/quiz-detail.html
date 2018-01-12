@@ -13,60 +13,32 @@
         </ion-slide>
     </ion-slides>-->
     <!-- Quiz Results -->
-    <div id="quiz-result" class="card">
-        You Scored <span id="quiz-percent"></span>% - <span id="quiz-score"></span>/<span id="quiz-max-score"></span><br/>
+    <div>
+        <progress-bar [progress]="loadProgress" [backgroundcolor]="backgroundColor" [score]="score" [maxscore]="maxScore"></progress-bar>
     </div>
 
     <!-- Quiz Container -->
     <ion-slides (ionSlideWillChange)="onSlideChangeStart($event)">
-        <ion-slide class="card quizlib-question">
-            <div class="quizlib-question-title">1. What is the answer to life, the universe and everything?</div>
-            <div class="quizlib-question-answers">
-                <ion-list>
+        <ion-slide class="card quizlib-question" *ngFor="let question of questions">
+            <div class="quizlib-question-title">{{question.title}}</div>
+            <div class="quizlib-question-answers">{{question.type}}
+                <ion-list *ngIf="question.type=='textbox'">
                     <ion-item>
                         <ion-input type="text" value="" name="q1"></ion-input>
                     </ion-item>
                 </ion-list>
-
-            </div>
-        </ion-slide>
-        <ion-slide class="card quizlib-question">
-            <div class="quizlib-question-title">2. Your enemy..</div>
-            <div class="quizlib-question-answers">
-                <ion-list radio-group>
-                    <ion-item>
-                        <ion-label>Go</ion-label>
-                        <ion-radio name="q2" value="a"></ion-radio>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label>Rust</ion-label>
-                        <ion-radio name="q2" value="b"></ion-radio>
+                <ion-list radio-group *ngIf="question.type=='radio'">
+                    <ion-item *ngFor="let option of question.options">
+                        <ion-label>{{option.name}}</ion-label>
+                        <ion-radio name="q2" value="{{option.value}}"></ion-radio>
                     </ion-item>
                 </ion-list>
-            </div>
-        </ion-slide>
-        <ion-slide class="card quizlib-question">
-            <div class="quizlib-question-title">3. Which factors will contribute to the end of humanity as we know it?</div>
-            <div class="quizlib-question-answers">
-                <ion-item>
-                    <ion-label>Global warming</ion-label>
-                    <ion-checkbox color="dark" name="q3" value="a"></ion-checkbox>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label>Arya Stark</ion-label>
-                    <ion-checkbox name="q3" value="b"></ion-checkbox>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Arya Stark</ion-label>
-                    <ion-checkbox name="q3" value="c"></ion-checkbox>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Arya Stark</ion-label>
-                    <ion-checkbox name="q3" value="d"></ion-checkbox>
-                </ion-item>
-
+                <ng-container *ngIf="question.type=='checkbox'">
+                    <ion-item *ngFor="let option of question.options">
+                        <ion-label>{{option.name}}</ion-label>
+                        <ion-checkbox name="q3" value="a"></ion-checkbox>
+                    </ion-item>
+                </ng-container>
             </div>
         </ion-slide>
 

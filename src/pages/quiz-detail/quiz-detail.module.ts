@@ -4,9 +4,12 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { QuizDetailPage } from './quiz-detail';
 
+import { ProgressBarComponent } from './../../components/progress-bar/progress-bar';
+
 @NgModule({
   declarations: [
     QuizDetailPage,
+    ProgressBarComponent
   ],
   imports: [
     IonicPageModule.forChild(QuizDetailPage),

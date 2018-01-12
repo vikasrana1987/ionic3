@@ -3,16 +3,6 @@
 * Classes used by QuizLib, you can freely override them in your own stylesheets 
 */
 
-.quizlib-question {
-    margin-bottom: 1em;
-}
-
-.quizlib-question-title {}
-
-.quizlib-question-answers ul {
-    list-style: none;
-}
-
 .quizlib-question-warning {
     color: #f44336;
     margin-left: 1em;
